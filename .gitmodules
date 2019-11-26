@@ -1,0 +1,6 @@
+[submodule "velodyne"]
+	path = velodyne
+	url = https://github.com/zju-rolab/velodyne.git
+[submodule "flir_camera_driver"]
+	path = flir_camera_driver
+	url = https://github.com/zju-rolab/flir_camera_driver.git
