@@ -4,3 +4,7 @@
 [submodule "flir_camera_driver"]
 	path = flir_camera_driver
 	url = https://github.com/zju-rolab/flir_camera_driver.git
+
+[submodule "cplus_xsens_driver"]
+	path = cplus_xsens_driver
+	url = https://github.com/zju-rolab/cplus_xsens_driver.git
