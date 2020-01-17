@@ -111,7 +111,7 @@ pipeline {
             }
 
             steps {
-                build job: 'thomas_docker/master', propagate: true, wait: true
+                build job: 'thomas_docker/master', propagate: true, wait: true, parameters: [string(name: 'TRIGGER_SOURCE', value: "thomas_drivers")]
             }
         }
     }
