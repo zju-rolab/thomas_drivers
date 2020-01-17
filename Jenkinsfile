@@ -16,7 +16,7 @@ def runPack() {
         PKG_NAME="thomas-drivers" &&                                                    \
         WORKSPACE="thomas_drivers" &&                                                   \
         PKG_DIR="./${PKG_NAME}-${VERSION}" &&                                           \
-        WORKSPACE_DIR="${PKG_DIR}/opt/${WORKSPACE}" &&                                  \
+        WORKSPACE_DIR="${PKG_DIR}/opt/thomas/${WORKSPACE}" &&                           \
         mkdir -p ${WORKSPACE_DIR} &&                                                    \
         catkin_make install -DCMAKE_INSTALL_PREFIX="${WORKSPACE_DIR}" &&                \
         mkdir ${PKG_DIR}/DEBIAN &&                                                      \
