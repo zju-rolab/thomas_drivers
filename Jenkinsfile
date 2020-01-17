@@ -47,6 +47,7 @@ pipeline {
                 branch 'master'  
             }
             steps {
+                echo 'Publishing...'
             }
         }
         stage('Dockerize') {
@@ -54,6 +55,7 @@ pipeline {
                 branch 'master'  
             }
             steps {
+                echo 'Dockerizing...'
             }
         }
     }
