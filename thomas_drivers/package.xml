@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>thomas_drivers</name>
+  <version>0.1.0</version>
+  <description>Metapackage for thomas_drivers</description>
+
+  <maintainer email="litang.cv@gmail.com">Li Tang</maintainer>
+
+
+  <license>MIT</license>
+
+
+  <!-- <url type="website">http://wiki.ros.org/thomas_drivers</url> -->
+
+
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>cplus_xsens_driver</build_depend>
+  <build_depend>flir_camera_driver</build_depend>
+  <build_depend>velodyne</build_depend>
+  <build_export_depend>cplus_xsens_driver</build_export_depend>
+  <build_export_depend>flir_camera_driver</build_export_depend>
+  <build_export_depend>velodyne</build_export_depend>
+  <exec_depend>cplus_xsens_driver</exec_depend>
+  <exec_depend>flir_camera_driver</exec_depend>
+  <exec_depend>velodyne</exec_depend>
+
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
