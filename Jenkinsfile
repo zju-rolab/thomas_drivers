@@ -103,16 +103,5 @@ pipeline {
                 sh 'cp thomas-drivers-*.deb /pkgs'
             }
         }
-
-        stage('Dockerize') {
-
-            // when {
-            //     branch 'master'  
-            // }
-
-            steps {
-                echo 'Dockerizing...'
-            }
-        }
     }
 }
