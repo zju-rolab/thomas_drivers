@@ -5,33 +5,44 @@ def pack_badge = addEmbeddableBadgeConfiguration(id: 'build', subject: 'Build')
 
 def runBuild() {
     sh 'mkdir .src && mv * .src && mv .src src && cd src'
-    sh 'apt-get update && apt-get install -y ros-kinetic-image-exposure-msgs ros-kinetic-wfov-camera-msgs'
     sh '. /opt/ros/kinetic/setup.sh && catkin_init_workspace src && catkin_make -j4'
 }
 
 def runPack() {
     sh 'ls'
     sh 'pwd'
-    sh 'version=$(cat src/thomas_drivers/thomas_drivers/package.xml | grep "<version>" | cut -d">" -f2 | cut -d"<" -f1) && mkdir thomas-drivers-${version}'
-    sh '. /opt/ros/kinetic/setup.sh && catkin_make install thomas-drivers-*'
+    sh 'find src'
+    sh '''                                                                      \
+        version=$(cat src/thomas_drivers/package.xml |                          \
+            grep "<version>" | cut -d">" -f2 | cut -d"<" -f1) &&                \
+        mkdir thomas-drivers-${version} &&                                      \
+        . /opt/ros/kinetic/setup.sh &&                                          \
+        catkin_make install -DCMAKE_INSTALL_PREFIX="thomas-drivers-${version}"  \
+       '''
 }
 
 pipeline {
-    agent any
-    
+
+    agent { 
+        label "master"
+    }
+
     stages {
 
         stage('Build') {
 
             agent {
-                docker { image 'thomas:ros-kinetic-thomas-base' }
+                docker {
+                    image 'thomas:ros-kinetic-thomas-base'
+                    reuseNode true
+                }
             }
 
             steps {
                 script {
                     build_badge.setStatus('building')
                     try {
-                        // runBuild()
+                        runBuild()
                         build_badge.setStatus('passing')
                     } catch (Exception err) {
                         build_badge.setStatus('failing')
@@ -48,7 +59,10 @@ pipeline {
             // }
 
             agent {
-                docker { image 'thomas:ros-kinetic-thomas-base' }
+                docker {
+                    image 'thomas:ros-kinetic-thomas-base'
+                    reuseNode true
+                }
             }
 
             steps {
@@ -59,7 +73,7 @@ pipeline {
                         pack_badge.setStatus('passing')
                     } catch (Exception err) {
                         pack_badge.setStatus('failing')
-                        err 'Pack failed'
+                        error 'Pack failed'
                     }
                 }
             }
