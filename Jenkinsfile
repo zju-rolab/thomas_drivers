@@ -68,9 +68,9 @@ pipeline {
 
         stage('Pack') {
 
-            // when {
-            //     branch 'master'  
-            // }
+            when {
+                branch 'master'  
+            }
 
             agent {
                 docker {
@@ -95,12 +95,23 @@ pipeline {
 
         stage('Publish') {
 
-            // when {
-            //     branch 'master'  
-            // }
+            when {
+                branch 'master'  
+            }
 
             steps {
                 sh 'cp thomas-drivers-*.deb /pkgs'
+            }
+        }
+
+        stage('Dockerize') {
+
+            when {
+                branch 'master'  
+            }
+
+            steps {
+                build job: 'thomas_docker/master', propagate: true, wait: true
             }
         }
     }
