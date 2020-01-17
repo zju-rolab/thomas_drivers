@@ -20,7 +20,8 @@ pipeline {
     agent any
     
     stages {
-        stage('BuildAndPack') {
+
+        stage('Build') {
 
             agent {
                 docker { image 'thomas:ros-kinetic-thomas-base' }
@@ -30,7 +31,7 @@ pipeline {
                 script {
                     build_badge.setStatus('building')
                     try {
-                        runBuild()
+                        // runBuild()
                         build_badge.setStatus('passing')
                     } catch (Exception err) {
                         build_badge.setStatus('failing')
@@ -39,6 +40,7 @@ pipeline {
                 }
             }
         }
+
         stage('Pack') {
 
             // when {
@@ -53,7 +55,7 @@ pipeline {
                 script {
                     pack_badge.setStatus('building')
                     try {
-                    runPack()
+                        runPack()
                         pack_badge.setStatus('passing')
                     } catch (Exception err) {
                         pack_badge.setStatus('failing')
@@ -62,6 +64,7 @@ pipeline {
                 }
             }
         }
+
         stage('Publish') {
             when {
                 branch 'master'  
