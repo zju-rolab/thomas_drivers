@@ -29,16 +29,16 @@ pipeline {
         }
         stage('Pack') {
 
-            when {
-                branch 'master'  
-            }
+            // when {
+            //     branch 'master'  
+            // }
 
             agent {
                 docker { image 'thomas:ros-kinetic-thomas-base' }
             }
 
             steps {
-                sh 'version=$(cat thomas_drivers/package.xml | grep \'<version>\' | cut -d">" -f2 | cut -d"<" -f1) && mkdir thomas-drivers-${version}'
+                sh 'version=$(cat src/thomas_drivers/thomas_drivers/package.xml | grep "<version>" | cut -d">" -f2 | cut -d"<" -f1) && mkdir thomas-drivers-${version}'
                 sh '. /opt/ros/kinetic/setup.sh && catkin_make install thomas-drivers-*'
             }
         }
