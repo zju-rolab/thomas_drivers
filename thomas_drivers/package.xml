@@ -17,12 +17,7 @@
 
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>cplus_xsens_driver</build_depend>
-  <build_depend>flir_camera_driver</build_depend>
-  <build_depend>velodyne</build_depend>
-  <build_export_depend>cplus_xsens_driver</build_export_depend>
-  <build_export_depend>flir_camera_driver</build_export_depend>
-  <build_export_depend>velodyne</build_export_depend>
+  
   <exec_depend>cplus_xsens_driver</exec_depend>
   <exec_depend>flir_camera_driver</exec_depend>
   <exec_depend>velodyne</exec_depend>
